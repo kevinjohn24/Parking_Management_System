@@ -1,0 +1,35 @@
+
+📜 SQL Schema (Basic Structure)
+
+CREATE DATABASE parking_management;
+USE parking_management;
+
+CREATE TABLE users (
+    user_id VARCHAR(4) PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    full_name VARCHAR(100),
+    phone VARCHAR(15),
+    email VARCHAR(100)
+);
+
+CREATE TABLE vehicles (
+    user_id VARCHAR(4) NOT NULL,
+    vehicle_number VARCHAR(15) PRIMARY KEY,
+    owner_name VARCHAR(50) NOT NULL,
+    vehicle_type VARCHAR(20),
+    vehicle_model VARCHAR(30),
+    entry_time TIMESTAMP NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE bills (
+    user_id VARCHAR(4) NOT NULL,
+    vehicle_number VARCHAR(15) NOT NULL,
+    bill_amount DECIMAL(10,2) NOT NULL,
+    entry_time TIMESTAMP NOT NULL,
+    exit_time TIMESTAMP NOT NULL,
+    PRIMARY KEY (user_id, vehicle_number, entry_time),
+    FOREIGN KEY (user_id) REFERENCES users(user_id),
+    FOREIGN KEY (vehicle_number) REFERENCES vehicles(vehicle_number)
+);
