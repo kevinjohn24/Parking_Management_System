@@ -15,7 +15,7 @@ CREATE TABLE users (
 
 CREATE TABLE vehicles (
     user_id VARCHAR(4) NOT NULL,
-    vehicle_number VARCHAR(15) PRIMARY KEY,
+    vehicle_number VARCHAR(10) PRIMARY KEY,
     owner_name VARCHAR(50) NOT NULL,
     vehicle_type VARCHAR(20),
     vehicle_model VARCHAR(30),
